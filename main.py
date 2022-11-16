@@ -1,20 +1,18 @@
 from skimage import io
-from collections import OrderedDict
 import arrayhelper
 import alphabet
 
-xlen = alphabet.xlen
-test = arrayhelper.parse_image(io.imread('test.png'), xlen)
+div = alphabet.div
+test = arrayhelper.parse_image(io.imread('test.png'), div)
 results = {}
 for img in alphabet.dictionary:
     curr = alphabet.dictionary[img]
     sum = 0
-    for i in range(xlen):
-        for j in range(xlen):
+    for i in range(div):
+        for j in range(div):
            sum += abs(curr[i][j] - test[i][j])
     results[img] = sum
 
-print()
 print("Test:")
 arrayhelper.show(test)
 print()

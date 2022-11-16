@@ -1,9 +1,9 @@
-def parse_image(image, xlen):
+def parse_image(image, div):
     res = []
-    slen = int(len(image) / xlen)
-    for x in range(0,xlen):
+    slen = int(len(image) / div)
+    for x in range(0,div):
         res.append([])
-        for y in range(0,xlen):
+        for y in range(0,div):
             isWhite = True
             for i in range(0,slen):
                 for j in range(0, slen):
