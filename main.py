@@ -175,9 +175,6 @@ class Application(tk.Frame):
         self.btn_text = tk.StringVar(value="Here!")
         self.scanner = Button(textvariable=self.btn_text, command=self.scan)
         self.scanner.pack(padx=15, pady=15)
-
-        self.a = tk.Text(self, height=20, width=25)
-        self.a.pack()
     
     def plu(self):
         # open image to resize it
