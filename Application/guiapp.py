@@ -1,11 +1,13 @@
 import tkinter as tk
 from tkinter import * 
 from PIL import Image, ImageTk
-import mainy
-from skimage import data, io, filters
+from skimage import io, filters
+import consoleapp, config
 
-sizee = 50
-path = "photo.jpg"
+range = 50
+extention = ".jpg"
+path = "photo" + extention
+
 class MousePositionTracker(tk.Frame):
     """ Tkinter Canvas mouse position widget. """
 
@@ -106,7 +108,7 @@ class SelectionObject:
         #self.canvas.coords(self.rects[1], omin_x, imin_y,  imin_x, imax_y),
         #self.canvas.coords(self.rects[2], imax_x, imin_y,  omax_x, imax_y),
         #self.canvas.coords(self.rects[3], omin_x, imax_y,  omax_x, omax_y),
-        self.canvas.coords(self.rects[0], imax_x - sizee, imax_y - sizee,  imax_x + sizee, imax_y + sizee),
+        self.canvas.coords(self.rects[0], imax_x - range, imax_y - range,  imax_x + range, imax_y + range),
 
         for rect in self.rects:  # Make sure all are now visible.
             self.canvas.itemconfigure(rect, state=tk.NORMAL)
@@ -222,16 +224,16 @@ class Application(tk.Frame):
         image = Image.open(path)
         # resize the image with width and height of root
         resized = image.resize((self.w, self.h), Image.ANTIALIAS)
-        left = self.curr[0] - sizee
-        right =  self.curr[0] + sizee
-        up =  self.curr[1] - sizee
-        down =  self.curr[1] + sizee
+        left = self.curr[0] - range
+        right =  self.curr[0] + range
+        up =  self.curr[1] - range
+        down =  self.curr[1] + range
         crop = resized.crop([ left, up, right, down])
-        crop.save("asdf.jpg")
+        crop.save("tempo" + extention)
 
-        image = io.imread('asdf.jpg')
-        edges = filters.meijering(image) if mainy.DOFILTER else image
-        res = mainy.go(edges)
+        image = io.imread("tempo" + extention)
+        edges = filters.meijering(image) if config.DOFILTER else image
+        res = consoleapp.find(edges)
         self.btn_text.set(res)
 
     def change(self):

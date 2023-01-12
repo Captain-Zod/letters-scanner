@@ -1,0 +1,4 @@
+ALPHABET_FOLDER = "..\\Alphabet\\"
+DIVISIONS = 25
+DOFILTER = False
+PIX_COLOR= 0 if DOFILTER else 255
